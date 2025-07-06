@@ -8,51 +8,84 @@
 </head>
 <body>
   <div class="container">
-    <h1>📜 Золотые Стихи из Библии</h1>
+    <button id="lang-toggle">Перевести на English</button>
 
-    <div class="verse">
-      <h2>Иоанна 3:16</h2>
-      <p>Ибо так возлюбил Бог мир, что отдал Сына Своего Единородного,  
-        дабы всякий, верующий в Него, не погиб, но имел жизнь вечную.</p>
+    <h1 id="title">📜 Золотые Стихи из Библии</h1>
+
+    <div class="verse" data-ru="Иоанна 3:16|Ибо так возлюбил Бог мир, что отдал Сына Своего Единородного, дабы всякий, верующий в Него, не погиб, но имел жизнь вечную."
+                      data-en="John 3:16|For God so loved the world that He gave His only begotten Son, that whoever believes in Him should not perish but have everlasting life.">
+      <h2></h2>
+      <p></p>
     </div>
 
-    <div class="verse">
-      <h2>Псалом 22:1</h2>
-      <p>Господь — Пастырь мой; я ни в чём не буду нуждаться.</p>
+    <div class="verse" data-ru="Псалом 22:1|Господь — Пастырь мой; я ни в чём не буду нуждаться."
+                      data-en="Psalm 23:1|The Lord is my shepherd; I shall not want.">
+      <h2></h2>
+      <p></p>
     </div>
 
-    <div class="verse">
-      <h2>Римлянам 8:28</h2>
-      <p>Притом знаем, что любящим Бога, призванным по Его изволению,  
-        всё содействует ко благу.</p>
+    <div class="verse" data-ru="Римлянам 8:28|Притом знаем, что любящим Бога, призванным по Его изволению, всё содействует ко благу."
+                      data-en="Romans 8:28|And we know that all things work together for good to those who love God, to those who are the called according to His purpose.">
+      <h2></h2>
+      <p></p>
     </div>
 
-    <div class="verse">
-      <h2>Филиппийцам 4:13</h2>
-      <p>Всё могу в укрепляющем меня Иисусе Христе.</p>
+    <div class="verse" data-ru="Филиппийцам 4:13|Всё могу в укрепляющем меня Иисусе Христе."
+                      data-en="Philippians 4:13|I can do all things through Christ who strengthens me.">
+      <h2></h2>
+      <p></p>
     </div>
 
-    <div class="verse">
-      <h2>Притчи 3:5–6</h2>
-      <p>Надейся на Господа всем сердцем твоим и не полагайся на разум твой.  
-        Во всех путях твоих познавай Его, и Он направит стези твои.</p>
+    <div class="verse" data-ru="Притчи 3:5–6|Надейся на Господа всем сердцем твоим и не полагайся на разум твой. Во всех путях твоих познавай Его, и Он направит стези твои."
+                      data-en="Proverbs 3:5–6|Trust in the Lord with all your heart and lean not on your own understanding; in all your ways acknowledge Him, and He shall direct your paths.">
+      <h2></h2>
+      <p></p>
     </div>
 
-    <div class="verse">
-      <h2>Исаия 41:10</h2>
-      <p>Не бойся, ибо Я с тобою; не смущайся, ибо Я Бог твой;  
-        Я укреплю тебя, и помогу тебе, и поддержу тебя десницей правды Моей.</p>
+    <div class="verse" data-ru="Исаия 41:10|Не бойся, ибо Я с тобою; не смущайся, ибо Я Бог твой; Я укреплю тебя, и помогу тебе, и поддержу тебя десницей правды Моей."
+                      data-en="Isaiah 41:10|Fear not, for I am with you; Be not dismayed, for I am your God. I will strengthen you, Yes, I will help you, I will uphold you with My righteous right hand.">
+      <h2></h2>
+      <p></p>
     </div>
 
-    <div class="verse">
-      <h2>Иоанна 14:6</h2>
-      <p>Иисус сказал ему: Я есмь путь и истина и жизнь;  
-        никто не приходит к Отцу, как только через Меня.</p>
+    <div class="verse" data-ru="Иоанна 14:6|Иисус сказал ему: Я есмь путь и истина и жизнь; никто не приходит к Отцу, как только через Меня."
+                      data-en="John 14:6|Jesus said to him, 'I am the way, the truth, and the life. No one comes to the Father except through Me.'">
+      <h2></h2>
+      <p></p>
     </div>
 
     <footer>
-      <p>© 2025 Golden Verses. Все права защищены.</p>
+      <p id="footer-text">© 2025 Golden Verses. Все права защищены.</p>
     </footer>
   </div>
+
+  <script>
+    let currentLang = 'ru';
+
+    function updateLanguage(lang) {
+      document.getElementById('title').textContent =
+        lang === 'en' ? '📜 Golden Verses from the Bible' : '📜 Золотые Стихи из Библии';
+
+      document.getElementById('footer-text').textContent =
+        lang === 'en' ? '© 2025 Golden Verses. All rights reserved.' : '© 2025 Golden Verses. Все права защищены.';
+
+      document.querySelectorAll('.verse').forEach(div => {
+        const data = div.dataset[lang].split('|');
+        div.querySelector('h2').textContent = data[0];
+        div.querySelector('p').textContent = data[1];
+      });
+
+      document.getElementById('lang-toggle').textContent =
+        lang === 'en' ? 'Перевести на русский' : 'Translate to English';
+    }
+
+    document.getElementById('lang-toggle').addEventListener('click', () => {
+      currentLang = currentLang === 'ru' ? 'en' : 'ru';
+      updateLanguage(currentLang);
+    });
+
+    // Initialize page in Russian
+    updateLanguage('ru');
+  </script>
 </body>
 </html>
