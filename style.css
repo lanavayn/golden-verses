@@ -48,3 +48,21 @@ footer {
   font-size: 0.9em;
   color: #7a6848;
 }
+
+/* 👇 New styles for buttons */
+button {
+  display: block;
+  margin: 10px auto 30px;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #e4d4b7;
+  color: #4b3621;
+  border: 1px solid #c1ac87;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #d8c3a5;
+}
